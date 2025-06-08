@@ -25,7 +25,7 @@
 
 <script>
 import SearchInput from './SearchInput.vue';
-import InfoPopup from './InfoPopup.vue';
+import InfoPopup from './Map/InfoPopup.vue';
 import { ref } from 'vue';
 
 export default {

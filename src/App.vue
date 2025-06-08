@@ -1,5 +1,7 @@
 <template>
-  <map-page></map-page>
+  <v-app>
+    <map-page></map-page>
+  </v-app>
 </template>
 
 <script>

@@ -22,7 +22,7 @@
 <script>
 import { useDistrictStore } from '@/store/map.store';
 import { storeToRefs } from 'pinia';
-import Loader from './Loader.vue';
+import Loader from '.././Loader.vue';
 
 export default {
   name: 'DistrictsSidebar',
@@ -30,12 +30,13 @@ export default {
     Loader
   },
   
-  setup() {
+  setup(props, { emit }) {
     const districtStore = useDistrictStore();
     const { districts, filteredDistricts, selectedDistrict, isLoading } = storeToRefs(districtStore);
 
     const selectDistrict = (district) => {
       districtStore.setSelectedDistrict(district);
+      emit('openSidebar');
     };
 
     return {

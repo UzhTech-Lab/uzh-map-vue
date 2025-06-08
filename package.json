@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@mdi/font": "^7.4.47",
     "axios": "^1.9.0",
     "core-js": "^3.8.3",
     "leaflet": "^1.9.4",
@@ -26,7 +27,11 @@
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^9.1.7",
-    "vue-loader": "^17.4.2"
+    "sass": "^1.89.1",
+    "sass-loader": "^16.0.5",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "vue-loader": "^17.4.2",
+    "vuetify": "^3.8.8"
   },
   "eslintConfig": {
     "root": true,

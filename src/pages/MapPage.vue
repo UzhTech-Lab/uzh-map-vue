@@ -2,18 +2,19 @@
   <main class="map-page">
     <Header />
     <div class="map-container">
-      <!-- Sidebar (fixed width) -->
-      <DistrictsSidebar class="sidebar" />
+      <DistrictsSidebar @openSidebar="openSidebar" class="sidebar" />
       
-      <!-- Map (full remaining width) -->
-      <div id="map" class="map"></div>
+      <div id="map" class="map" :style="{ marginRight: isOpened ? '380px' : '0px' }"></div>
+      
+      <CommunitySidebar v-if="isOpened" @closeSidebar="closeSidebar" class="community-sidebar" />
     </div>
   </main>
 </template>
 
 <script>
 import 'leaflet/dist/leaflet.css';
-import DistrictsSidebar from '../components/DistrictsSidebar.vue';
+import DistrictsSidebar from '../components/Map/DistrictsSidebar.vue';
+import CommunitySidebar from '../components/Map/CommunitySidebar.vue';
 import { onMounted, ref, watch } from 'vue';
 import L from 'leaflet';
 import Header from '@/components/Header.vue';
@@ -38,13 +39,23 @@ export default {
   name: 'MapPage',
   components: {
     DistrictsSidebar,
-    Header
+    Header,
+    CommunitySidebar
   },
 
   setup() {
     const map = ref(null);
+    const isOpened = ref(false);
     const districtStore = useDistrictStore();
     const { districts, selectedDistrict } = storeToRefs(districtStore);
+
+    const closeSidebar = () => {
+      isOpened.value = false;
+    };
+
+    const openSidebar = () => {
+      isOpened.value = true;
+    };
 
     onMounted(async () => {
       map.value = L.map('map', {
@@ -72,6 +83,8 @@ export default {
           marker.bindPopup(`<b>${district.name}</b>`);
         });
       }
+
+      isOpened.value = true;
     });
 
     watch(selectedDistrict, (newDistrict) => {
@@ -82,10 +95,13 @@ export default {
 
     return {
       districts,
-      selectedDistrict
+      selectedDistrict,
+      isOpened,
+      closeSidebar,
+      openSidebar
     };
   }
-}
+};
 </script>
 
 <style scoped>
@@ -105,6 +121,19 @@ export default {
 .sidebar {
   width: 280px;
   flex-shrink: 0;
+  z-index: 10;
+}
+
+.community-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 380px;
+  background-color: white;
+  border-left: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem 0 0 1rem;
   z-index: 10;
 }
 
