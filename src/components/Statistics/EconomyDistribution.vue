@@ -4,7 +4,7 @@
     <div class="stats-subtitle">Ключові економічні дані регіону</div>
     <div class="stats-section">
       <div class="stats-section-title">Кількість працевлаштувань відносно сектору</div>
-      <div v-for="item in selectedDistrict.stats.economyDistribution" :key="item.label" class="stats-row">
+      <div v-for="item in selectedCommunity.stats.economyDistribution" :key="item.label" class="stats-row">
         <div class="stats-row-label">
           <span>{{ item.label }}</span>
           <span>{{ item.value }}%</span>
@@ -19,7 +19,7 @@
 export default {
   name: 'EconomyDistribution',
   props: {
-    selectedDistrict: {
+    selectedCommunity: {
       type: Object,
       required: true
     }

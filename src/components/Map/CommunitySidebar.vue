@@ -1,29 +1,29 @@
 <template>
   <aside class="community-sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-title">{{ selectedDistrict?.name || 'Оберіть ТГ' }}</span>
+      <span class="sidebar-title">{{ selectedCommunity?.name || 'Оберіть ТГ' }}</span>
       <button @click="closeSidebar" class="close-button" aria-label="Закрити панель">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <div v-if="selectedDistrict" class="general-info-card">
+    <div v-if="selectedCommunity" class="general-info-card">
       <div class="general-info-title">Загальні відомості</div>
       <div class="general-info-grid">
         <div class="general-info-item">
           <div class="label">Населення</div>
-          <div class="value">{{ selectedDistrict.general.population }}</div>
+          <div class="value">{{ selectedCommunity.general.population }}</div>
         </div>
         <div class="general-info-item">
           <div class="label">Площа</div>
-          <div class="value">{{ selectedDistrict.general.area }}</div>
+          <div class="value">{{ selectedCommunity.general.area }}</div>
         </div>
         <div class="general-info-item">
           <div class="label">Засновано</div>
-          <div class="value">{{ selectedDistrict.general.founded }}</div>
+          <div class="value">{{ selectedCommunity.general.founded }}</div>
         </div>
         <div class="general-info-item">
           <div class="label">Адмін. центр</div>
-          <div class="value">{{ selectedDistrict.general.adminCenter }}</div>
+          <div class="value">{{ selectedCommunity.general.adminCenter }}</div>
         </div>
       </div>
     </div>
@@ -33,29 +33,29 @@
       <button class="tab" :class="{active: activeTab === 'gallery'}" @click="activeTab = 'gallery'">Галерея</button>
     </div>
 
-    <div v-if="activeTab === 'info' && selectedDistrict" class="accordion-list">
-      <AccordionSection v-for="section in selectedDistrict.sections" :key="section.title" :icon="section.icon" :title="section.title" :mock="section.text" />
+    <div v-if="activeTab === 'info' && selectedCommunity" class="accordion-list">
+      <AccordionSection v-for="section in selectedCommunity.sections" :key="section.title" :icon="section.icon" :title="section.title" :mock="section.text" />
     </div>
 
-    <div v-else-if="activeTab === 'stats' && selectedDistrict" class="tab-content stats-tab">
-      <PopularitySection :selectedDistrict="selectedDistrict" />
-      <EthnicDistribution :selectedDistrict="selectedDistrict" />
-      <EconomyDistribution :selectedDistrict="selectedDistrict" />
+    <div v-else-if="activeTab === 'stats' && selectedCommunity" class="tab-content stats-tab">
+      <PopularitySection :selectedCommunity="selectedCommunity" />
+      <EthnicDistribution :selectedCommunity="selectedCommunity" />
+      <EconomyDistribution :selectedCommunity="selectedCommunity" />
     </div>
 
-    <div v-else-if="activeTab === 'gallery' && selectedDistrict" class="tab-content">
+    <div v-else-if="activeTab === 'gallery' && selectedCommunity" class="tab-content">
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <img v-for="(img, i) in selectedDistrict.gallery" :key="i" :src="img" style="width: 48%; height: 48%; border-radius: 6px; object-fit: cover; background: #e5e7eb;" />
+        <img v-for="(img, i) in selectedCommunity.gallery" :key="i" :src="img" style="width: 48%; height: 48%; border-radius: 6px; object-fit: cover; background: #e5e7eb;" />
       </div>
     </div>
     
-    <div v-if="!selectedDistrict" class="tab-content" style="text-align:center; color:#64748b;">Оберіть громаду для перегляду інформації</div>
+    <div v-if="!selectedCommunity" class="tab-content" style="text-align:center; color:#64748b;">Оберіть громаду для перегляду інформації</div>
   </aside>
 </template>
 
 <script>
 import { ref } from 'vue';
-import { useDistrictStore } from '@/store/map.store';
+import { useCommunityStore } from '@/store/map.store';
 import { storeToRefs } from 'pinia';
 import AccordionSection from './AccordionSection.vue';
 import PopularitySection from '../Statistics/PopularitySection.vue';
@@ -73,8 +73,8 @@ export default {
 
   setup(props, { emit }) {
     const activeTab = ref('info');
-    const districtStore = useDistrictStore();
-    const { selectedDistrict } = storeToRefs(districtStore);
+    const communityStore = useCommunityStore();
+    const { selectedCommunity } = storeToRefs(communityStore);
 
     const closeSidebar = () => {
       emit('closeSidebar');
@@ -82,7 +82,7 @@ export default {
 
     return { 
       activeTab, 
-      selectedDistrict,
+      selectedCommunity,
       closeSidebar
     };
   }

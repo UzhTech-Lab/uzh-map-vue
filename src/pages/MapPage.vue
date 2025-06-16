@@ -5,7 +5,7 @@
       <i class="fas fa-list"></i>
     </button>
     <div class="map-container">
-      <DistrictsSidebar v-if="isOpenedDistricts" @closeSidebar="closeDistrictsSidebar" @openSidebar="openSidebar" class="sidebar" />      
+      <DistrictsSidebar v-if="isOpenedDistricts" @closeSidebar="closeDistrictsSidebar" @openSidebar="openSidebar" class="sidebar" />
       
       <div id="map" class="map" :style="{ marginLeft: isOpenedDistricts ? '280px' : '0px', marginRight: isOpened ? '380px' : '0px' }"></div>
       
@@ -21,7 +21,7 @@ import CommunitySidebar from '../components/Map/CommunitySidebar.vue';
 import { onMounted, ref, watch, onUnmounted } from 'vue';
 import L from 'leaflet';
 import Header from '@/components/Header.vue';
-import { useDistrictStore } from '@/store/map.store';
+import { useMapStore } from '@/store/map.store';
 import { storeToRefs } from 'pinia';
 
 import defaultIcon from 'leaflet/dist/images/marker-icon.png';
@@ -49,8 +49,8 @@ export default {
     const isOpened = ref(false);
     const isOpenedDistricts = ref(false);
     const isMobile = ref(window.innerWidth <= 768);
-    const districtStore = useDistrictStore();
-    const { districts, selectedDistrict } = storeToRefs(districtStore);
+    const mapStore = useMapStore();
+    const { districts, selectedDistrict } = storeToRefs(mapStore);
 
     const handleResize = () => {
       isMobile.value = window.innerWidth <= 768;
@@ -91,9 +91,11 @@ export default {
         attribution: '&copy; OpenStreetMap contributors',
       }).addTo(map.value);
 
-      districtStore.setMockDistricts();
-      // For production, use this:
-      // await districtStore.fetchDistricts();
+      try {
+        await mapStore.getAllDistricts();
+      } catch (error) {
+        console.error('Failed to load districts:', error);
+      }
 
       if (districts.value && districts.value.length > 0) {
         districts.value.forEach(district => {
@@ -172,7 +174,7 @@ export default {
 .open-districts-button {
   position: fixed;
   top: 2.5rem;
-  transform: translateY(-55%);
+  transform: translateY(-50%);
   z-index: 10;
   width: 40px;
   height: 40px;

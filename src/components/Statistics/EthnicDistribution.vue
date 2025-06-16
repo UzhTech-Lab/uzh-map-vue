@@ -3,7 +3,7 @@
     <div class="stats-title">Етнічний склад</div>
     <div class="stats-subtitle">Розподіл населення за національністю</div>
     <div class="stats-section">
-      <div v-for="item in selectedDistrict.stats.ethnicDistribution" :key="item.label" class="stats-row">
+      <div v-for="item in selectedCommunity.stats.ethnicDistribution" :key="item.label" class="stats-row">
         <div class="stats-row-label">
           <span>{{ item.label }}</span>
           <span>{{ item.value }}%</span>
@@ -18,7 +18,7 @@
 export default {
   name: 'EthnicDistribution',
   props: {
-    selectedDistrict: {
+    selectedCommunity: {
       type: Object,
       required: true
     }

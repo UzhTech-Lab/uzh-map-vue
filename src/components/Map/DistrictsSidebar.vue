@@ -1,60 +1,74 @@
 <template>
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <h2 class="sidebar-title">Райони ({{ filteredDistricts.length }} / {{ districts.length }} показані) 
-        <button @click="closeSidebar" class="close-button" aria-label="Закрити панель">
-          <i class="fas fa-times"></i>
-        </button>
-      </h2>
-      
-      <ul class="districts-list">
-        <li v-for="district in filteredDistricts" :key="district.name" class="district-item">
-          <button 
-            class="district-button"
-            :class="{ 'active': selectedDistrict?.name === district.name }"
-            @click="selectDistrict(district)"
-          >
-            {{ district.name }}
-          </button>
-        </li>
-      </ul>
-    </nav>
-
-    <Loader :is-loading="isLoading" />
-  </aside>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Райони</h2>
+      <button @click="$emit('closeSidebar')" class="close-button" aria-label="Закрити">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="sidebar-content">
+      <div v-if="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Завантаження...
+      </div>
+      <div v-else-if="error" class="error">
+        {{ error }}
+      </div>
+      <div v-else-if="!districts || districts.length === 0" class="no-data">
+        Немає доступних районів
+      </div>
+      <div v-else class="districts-list">
+        <div
+          v-for="district in districts"
+          :key="district.id"
+          class="district-item"
+          :class="{ active: selectedDistrict?.id === district.id }"
+          @click="selectDistrict(district)"
+        >
+          <div class="district-info">
+            <h3>{{ district.name }}</h3>
+            <p class="district-description">{{ district.description }}</p>
+          </div>
+          <div class="district-stats">
+            <div class="stat">
+              <i class="fas fa-users"></i>
+              <span>{{ district.population }}</span>
+            </div>
+            <div class="stat">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{ district.area }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { useDistrictStore } from '@/store/map.store';
+import { useMapStore } from '@/store/map.store';
 import { storeToRefs } from 'pinia';
-import Loader from '.././Loader.vue';
 
 export default {
   name: 'DistrictsSidebar',
-  components: {
-    Loader
-  },
+  emits: ['closeSidebar', 'openSidebar'],
   
-  setup(props, { emit }) {
-    const districtStore = useDistrictStore();
-    const { districts, filteredDistricts, selectedDistrict, isLoading } = storeToRefs(districtStore);
+  setup() {
+    const mapStore = useMapStore();
+    const { districts, selectedDistrict, loading, error } = storeToRefs(mapStore);
 
     const selectDistrict = (district) => {
-      districtStore.setSelectedDistrict(district);
-      emit('openSidebar');
-    };
-
-    const closeSidebar = () => {
-      emit('closeSidebar');
+      mapStore.setSelectedDistrict(district);
+      mapStore.fetchDistrictProblems(district.id);
+      mapStore.fetchDistrictSolutions(district.id);
+      mapStore.fetchDistrictCommunity(district.id);
     };
 
     return {
       districts,
-      filteredDistricts,
       selectedDistrict,
-      selectDistrict,
-      isLoading,
-      closeSidebar
+      loading,
+      error,
+      selectDistrict
     };
   }
 };
@@ -62,76 +76,139 @@ export default {
 
 <style scoped>
 .sidebar {
-  position: fixed;
-  left: 0;
-  height: 100%;
   width: 280px;
+  height: 100vh;
   background-color: white;
   border-right: 1px solid #E2E8F0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border-radius: 0 1rem 1rem 0;
-  z-index: 10;
-}
-
-.sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem 1rem;
-  width: 100%;
 }
 
-.sidebar-title {
-  width: 100%;
-  font-size: 1.125rem;
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.75rem;
-  color: #374151;
-  margin-bottom: 0.5rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background-color: #F1F5F9;
+  color: #1E293B;
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
 }
 
 .districts-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  max-width: 255px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .district-item {
-  margin-bottom: 0.75rem;
-}
-
-.district-button {
-  width: 100%;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #4B5563;
-  background-color: white;
-  border: 1px solid #E5E7EB;
+  padding: 1rem;
+  border: 1px solid #E2E8F0;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s;
 }
 
-.district-button:hover {
-  background-color: #F3F4F6;
-  border-color: #D1D5DB;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.district-button.active {
-  background-color: #EFF6FF;
+.district-item:hover {
   border-color: #3B82F6;
-  color: #1E40AF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.district-item.active {
+  border-color: #3B82F6;
+  background-color: #EFF6FF;
+}
+
+.district-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
   font-weight: 600;
 }
 
-.district-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+.district-description {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748B;
+}
+
+.district-stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748B;
+}
+
+.stat i {
+  color: #3B82F6;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #64748B;
+  padding: 2rem;
+}
+
+.error {
+  color: #EF4444;
+  padding: 1rem;
+  text-align: center;
+  background-color: #FEF2F2;
+  border-radius: 0.5rem;
+}
+
+.no-data {
+  color: #64748B;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
 }
 </style>

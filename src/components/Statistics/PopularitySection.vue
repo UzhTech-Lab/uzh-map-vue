@@ -4,7 +4,7 @@
     <div class="stats-subtitle">Демографічна статистика регіону</div>
     <div class="stats-section">
       <div class="stats-section-title">Розподіл Віку</div>
-      <div v-for="item in selectedDistrict.stats.ageDistribution" :key="item.label" class="stats-row">
+      <div v-for="item in selectedCommunity.stats.ageDistribution" :key="item.label" class="stats-row">
         <div class="stats-row-label">
           <span>{{ item.label }}</span>
           <span>{{ item.value }}%</span>
@@ -19,7 +19,7 @@
 export default {
   name: 'PopularitySection',
   props: {
-    selectedDistrict: {
+    selectedCommunity: {
       type: Object,
       required: true
     }

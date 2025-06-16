@@ -1,185 +1,241 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import { ref, computed } from 'vue';
+import { districtService } from '@/services/district.service';
+import { problemService } from '@/services/problemService';
+import { solutionService } from '@/services/solutionService';
+import { communityService } from '@/services/communityService';
 
-export const useDistrictStore = defineStore('districts', {
-  state: () => ({
-    districts: [],
-    filteredDistricts: [],
-    selectedDistrict: null,
-    loading: false,
-    error: null
-  }),
-  
-  getters: {
-    getDistricts: (state) => state.districts,
-    getSelectedDistrict: (state) => state.selectedDistrict,
-    isLoading: (state) => state.loading
-  },
-  
-  actions: {
-    async fetchDistricts() {
-      this.loading = true;
-      try {
-        const response = await axios.get('/api/districts');
-        this.districts = response.data;
-        this.filteredDistricts = response.data;
-        this.error = null;
-      } catch (error) {
-        console.error('Error fetching districts:', error);
-        this.error = error.message;
-      } finally {
-        this.loading = false;
-      }
-    },
+export const useMapStore = defineStore('map', () => {
+  const districts = ref([]);
+  const selectedDistrict = ref(null);
+  const selectedProblem = ref(null);
+  const selectedSolution = ref(null);
+  const selectedCommunity = ref(null);
+  const loading = ref(false);
+  const error = ref(null);
 
-    setSelectedDistrict(district) {
-      this.selectedDistrict = district;
-    },
-
-    setMockDistricts() {
-      this.districts = [
-        {
-          name: 'Ужгородська міська ТГ',
-          lat: 48.6208,
-          lng: 22.3000,
-          general: {
-            population: '115 000',
-            area: '142 км²',
-            founded: '1248',
-            adminCenter: 'Ужгород'
-          },
-          sections: [
-            {
-              icon: 'fas fa-history',
-              title: 'Історія',
-              text: 'Ужгородська ТГ має багату історію, що починається з 1248 року. Місто було важливим торговим та культурним центром.'
-            },
-            {
-              icon: 'fas fa-map-marker-alt',
-              title: 'Географія',
-              text: 'ТГ розташована на заході України, на кордоні зі Словаччиною. Має вигідне географічне положення.'
-            },
-            {
-              icon: 'fas fa-users',
-              title: 'Демографія',
-              text: 'Населення складає 115 000 осіб. Більшість — українці, також є угорці, словаки, роми.'
-            },
-            {
-              icon: 'fas fa-coins',
-              title: 'Економіка',
-              text: 'Основні галузі: торгівля, туризм, легка промисловість, ІТ-сектор.'
-            },
-            {
-              icon: 'fas fa-bus',
-              title: 'Транспорт & Інфраструктура',
-              text: 'Розвинена мережа громадського транспорту, залізничний та автобусний вокзали.'
-            },
-            {
-              icon: 'fas fa-seedling',
-              title: 'Агрокультура',
-              text: 'В околицях розвинене садівництво, вирощування овочів, виноградарство.'
-            },
-            {
-              icon: 'fas fa-briefcase',
-              title: 'Сервіси & Послуги',
-              text: 'Доступні сучасні медичні, освітні, адміністративні та побутові послуги.'
-            },
-            {
-              icon: 'fas fa-university',
-              title: 'Освіта & Культура',
-              text: 'В ТГ діють університет, театри, музеї, бібліотеки, культурні центри.'
-            },
-            {
-              icon: 'fas fa-trophy',
-              title: 'Спортивні установи',
-              text: 'Є стадіони, басейни, спортивні школи, секції для дітей та дорослих.'
-            },
-            {
-              icon: 'fas fa-church',
-              title: 'Релігійні установи',
-              text: 'В ТГ діють православні, греко-католицькі, римо-католицькі церкви, синагога.'
-            }
-          ],
-          stats: {
-            ageDistribution: [
-              { label: '0 - 14 років', value: 18 },
-              { label: '15 - 64 років', value: 67 },
-              { label: '65+ років', value: 15 }
-            ],
-            ethnicDistribution: [
-              { label: 'Українці', value: 77 },
-              { label: 'Угорці', value: 12 },
-              { label: 'Словаки', value: 6 },
-              { label: 'Роми', value: 3 },
-              { label: 'Інші', value: 2 }
-            ],
-            economyDistribution: [
-              { label: 'Сервіси', value: 52 },
-              { label: 'Промисловість', value: 28 },
-              { label: 'Сільське господарство', value: 20 }
-            ]
-          },
-          gallery: [
-            'https://placehold.co/80x60',
-            'https://placehold.co/80x60',
-            'https://placehold.co/80x60'
-          ]
-        },
-        {
-          name: 'Костринська ТГ',
-          lat: 48.9833,
-          lng: 22.5000,
-          general: {
-            population: '5 200',
-            area: '95 км²',
-            founded: '1500',
-            adminCenter: 'Кострино'
-          },
-          sections: [
-            {
-              icon: 'fas fa-history',
-              title: 'Історія',
-              text: "Костринська ТГ відома з XVI століття. Тут збереглися старовинні дерев'яні церкви."
-            },
-            {
-              icon: 'fas fa-map-marker-alt',
-              title: 'Географія',
-              text: 'Громада розташована у гірській місцевості біля річки Уж.'
-            },
-          ],
-          stats: {
-            ageDistribution: [
-              { label: '0 - 14 років', value: 18 },
-              { label: '15 - 64 років', value: 67 },
-              { label: '65+ років', value: 15 }
-            ],
-            ethnicDistribution: [
-              { label: 'Українці', value: 77 },
-              { label: 'Угорці', value: 12 },
-              { label: 'Словаки', value: 6 },
-              { label: 'Роми', value: 3 },
-              { label: 'Інші', value: 2 }
-            ],
-            economyDistribution: [
-              { label: 'Сервіси', value: 52 },
-              { label: 'Промисловість', value: 28 },
-              { label: 'Сільське господарство', value: 20 }
-            ]
-          },
-          gallery: [
-            'https://placehold.co/80x60',
-            'https://placehold.co/80x60',
-            'https://placehold.co/80x60',
-          ]
-        }
-      ];
-      this.filteredDistricts = this.districts;
-    },
-
-    filterDistricts(query) {
-      this.filteredDistricts = this.districts.filter(district => 
-        district.name.toLowerCase().includes(query.toLowerCase())
-      );
+  const getAllDistricts = async () => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getAllDistricts();
+      districts.value = response.data;
+    } catch (err) {
+      error.value = err.message || 'Помилка при завантаженні районів';
+      console.error('Error fetching districts:', err);
+    } finally {
+      loading.value = false;
     }
-  }
+  };
+
+  const getDistrictById = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getDistrictById(id);
+      return response.data;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні району';
+      console.error('Error fetching district:', err);
+      return null;
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const setSelectedDistrict = (district) => {
+    selectedDistrict.value = district;
+  };
+
+  const clearSelectedDistrict = () => {
+    selectedDistrict.value = null;
+  };
+
+  const getDistrictsByRegion = async (regionId) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getDistrictsByRegion(regionId);
+      districts.value = response.data;
+    } catch (err) {
+      error.value = err.message || 'Помилка при завантаженні районів регіону';
+      console.error('Error fetching region districts:', err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const searchDistricts = async (query) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.searchDistricts(query);
+      districts.value = response.data;
+    } catch (err) {
+      error.value = err.message || 'Помилка при пошуку районів';
+      console.error('Error searching districts:', err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const filteredDistricts = computed(() => {
+    return districts.value;
+  });
+
+  const fetchDistrictProblems = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getDistrictProblems(id);
+      return response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні проблем району';
+      console.error('Error fetching district problems:', err);
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchDistrictSolutions = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getDistrictSolutions(id);
+      return response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні рішень району';
+      console.error('Error fetching district solutions:', err);
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchDistrictCommunity = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await districtService.getDistrictCommunity(id);
+      return response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні громадського району';
+      console.error('Error fetching district community:', err);
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchProblemById = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await problemService.getProblemById(id);
+      selectedProblem.value = response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні проблеми';
+      console.error('Error fetching problem:', err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchProblemSolutions = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await problemService.getProblemSolutions(id);
+      return response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні рішень проблеми';
+      console.error('Error fetching problem solutions:', err);
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchSolutionById = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await solutionService.getSolutionById(id);
+      selectedSolution.value = response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні рішення';
+      console.error('Error fetching solution:', err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchCommunityMemberById = async (id) => {
+    try {
+      loading.value = true;
+      error.value = null;
+      const response = await communityService.getMemberById(id);
+      selectedCommunity.value = response;
+    } catch (err) {
+      error.value = err.message || 'Помилка при отриманні члена громади';
+      console.error('Error fetching community member:', err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const setSelectedProblem = (problem) => {
+    selectedProblem.value = problem;
+  };
+
+  const clearSelectedProblem = () => {
+    selectedProblem.value = null;
+  };
+
+  const setSelectedSolution = (solution) => {
+    selectedSolution.value = solution;
+  };
+
+  const clearSelectedSolution = () => {
+    selectedSolution.value = null;
+  };
+
+  const setSelectedCommunity = (community) => {
+    selectedCommunity.value = community;
+  };
+
+  const clearSelectedCommunity = () => {
+    selectedCommunity.value = null;
+  };
+
+  return {
+    districts,
+    selectedDistrict,
+    selectedProblem,
+    selectedSolution,
+    selectedCommunity,
+    loading,
+    error,
+    getAllDistricts,
+    getDistrictById,
+    setSelectedDistrict,
+    clearSelectedDistrict,
+    getDistrictsByRegion,
+    searchDistricts,
+    filteredDistricts,
+    fetchDistrictProblems,
+    fetchDistrictSolutions,
+    fetchDistrictCommunity,
+    fetchProblemById,
+    fetchProblemSolutions,
+    fetchSolutionById,
+    fetchCommunityMemberById,
+    setSelectedProblem,
+    clearSelectedProblem,
+    setSelectedSolution,
+    clearSelectedSolution,
+    setSelectedCommunity,
+    clearSelectedCommunity
+  };
 });
