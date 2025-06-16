@@ -1,10 +1,13 @@
 <template>
   <main class="map-page">
     <Header />
+    <button v-if="!isOpenedDistricts || isMobile" @click="openDistrictsSidebar" class="open-districts-button" aria-label="Відкрити список районів">
+      <i class="fas fa-list"></i>
+    </button>
     <div class="map-container">
-      <DistrictsSidebar @openSidebar="openSidebar" class="sidebar" />
+      <DistrictsSidebar v-if="isOpenedDistricts" @closeSidebar="closeDistrictsSidebar" @openSidebar="openSidebar" class="sidebar" />      
       
-      <div id="map" class="map" :style="{ marginRight: isOpened ? '380px' : '0px' }"></div>
+      <div id="map" class="map" :style="{ marginLeft: isOpenedDistricts ? '280px' : '0px', marginRight: isOpened ? '380px' : '0px' }"></div>
       
       <CommunitySidebar v-if="isOpened" @closeSidebar="closeSidebar" class="community-sidebar" />
     </div>
@@ -15,17 +18,15 @@
 import 'leaflet/dist/leaflet.css';
 import DistrictsSidebar from '../components/Map/DistrictsSidebar.vue';
 import CommunitySidebar from '../components/Map/CommunitySidebar.vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, onUnmounted } from 'vue';
 import L from 'leaflet';
 import Header from '@/components/Header.vue';
 import { useDistrictStore } from '@/store/map.store';
 import { storeToRefs } from 'pinia';
 
-// Import marker icons
 import defaultIcon from 'leaflet/dist/images/marker-icon.png';
 import defaultIconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// Fix the default icon issue
 const DefaultIcon = L.icon({
   iconUrl: defaultIcon,
   shadowUrl: defaultIconShadow,
@@ -46,15 +47,37 @@ export default {
   setup() {
     const map = ref(null);
     const isOpened = ref(false);
+    const isOpenedDistricts = ref(false);
+    const isMobile = ref(window.innerWidth <= 768);
     const districtStore = useDistrictStore();
     const { districts, selectedDistrict } = storeToRefs(districtStore);
+
+    const handleResize = () => {
+      isMobile.value = window.innerWidth <= 768;
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', handleResize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', handleResize);
+    });
 
     const closeSidebar = () => {
       isOpened.value = false;
     };
 
+    const closeDistrictsSidebar = () => {
+      isOpenedDistricts.value = false;
+    };
+
     const openSidebar = () => {
       isOpened.value = true;
+    };
+
+    const openDistrictsSidebar = () => {
+      isOpenedDistricts.value = true;
     };
 
     onMounted(async () => {
@@ -84,7 +107,7 @@ export default {
         });
       }
 
-      isOpened.value = true;
+      isOpenedDistricts.value = true;
     });
 
     watch(selectedDistrict, (newDistrict) => {
@@ -97,8 +120,12 @@ export default {
       districts,
       selectedDistrict,
       isOpened,
+      isOpenedDistricts,
+      isMobile,
       closeSidebar,
-      openSidebar
+      closeDistrictsSidebar,
+      openSidebar,
+      openDistrictsSidebar
     };
   }
 };
@@ -140,6 +167,61 @@ export default {
 .map {
   flex: 1;
   height: 100vh;
-  margin-left: 280px;
+}
+
+.open-districts-button {
+  position: fixed;
+  top: 2.5rem;
+  transform: translateY(-55%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.open-districts-button:hover {
+  background-color: #F3F4F6;
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.open-districts-button i {
+  font-size: 1.25rem;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .community-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-left: 1px solid #E2E8F0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem 0 0 1rem;
+    z-index: 10;
+  }
+
+  .open-districts-button {
+    top: 1rem;
+    left: 1rem;
+    width: 26px;
+    height: 26px;
+    transform: none;
+  }
+
+  .open-districts-button:hover {
+    transform: scale(1.05);
+  }
 }
 </style>

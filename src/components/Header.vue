@@ -80,9 +80,8 @@ export default {
 }
 
 .info-button {
-  padding: 0.5rem;
-  width: 2rem;
-  height: 2rem;
+  width: 38px;
+  height: 38px;
   background-color: #3b82f6;
   color: white;
   border-radius: 0.375rem;
@@ -93,5 +92,17 @@ export default {
 
 .info-button:hover {
   background-color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-left: 40px;
+    padding: 0.75rem 1rem;
+  }
+
+  .header-left {
+    gap: 0.75rem;
+    display: none;
+  }
 }
 </style>

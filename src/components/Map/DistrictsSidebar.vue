@@ -1,7 +1,12 @@
 <template>
   <aside class="sidebar">
     <nav class="sidebar-nav">
-      <h2 class="sidebar-title">Райони ({{ filteredDistricts.length }} / {{ districts.length }} показані)</h2>
+      <h2 class="sidebar-title">Райони ({{ filteredDistricts.length }} / {{ districts.length }} показані) 
+        <button @click="closeSidebar" class="close-button" aria-label="Закрити панель">
+          <i class="fas fa-times"></i>
+        </button>
+      </h2>
+      
       <ul class="districts-list">
         <li v-for="district in filteredDistricts" :key="district.name" class="district-item">
           <button 
@@ -39,12 +44,17 @@ export default {
       emit('openSidebar');
     };
 
+    const closeSidebar = () => {
+      emit('closeSidebar');
+    };
+
     return {
       districts,
       filteredDistricts,
       selectedDistrict,
       selectDistrict,
-      isLoading
+      isLoading,
+      closeSidebar
     };
   }
 };

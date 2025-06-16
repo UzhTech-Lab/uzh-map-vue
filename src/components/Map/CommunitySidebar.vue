@@ -117,20 +117,6 @@ export default {
   color: #1a1a1a;
 }
 
-.close-button {
-  background: none;
-  border: none;
-  color: #64748b;
-  cursor: pointer;
-  padding: 0.5rem;
-  font-size: 1.25rem;
-  transition: color 0.2s ease-in-out;
-}
-
-.close-button:hover {
-  color: #1a1a1a;
-}
-
 .general-info-card {
   background: #f8fafc;
   border-radius: 0.75rem;
