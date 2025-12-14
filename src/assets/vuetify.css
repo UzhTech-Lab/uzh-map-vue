@@ -1,0 +1,13 @@
+.v-application {
+  font-family: 'Roboto', sans-serif;
+}
+
+.v-application--wrap {
+  min-height: 100vh;
+}
+
+.v-main {
+  flex: 1 1 auto;
+  max-width: 100%;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+} 
