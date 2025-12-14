@@ -1,0 +1,923 @@
+[
+  {
+    "id": 1,
+    "name": "Ужгородська міська громада",
+    "type": "міська",
+    "region": "Закарпатська область",
+    "area_km2": 36.9,
+    "population": 115512,
+    "settlements": 1,
+    "established": 2020,
+    "center": {
+      "latitude": 48.62389,
+      "longitude": 22.295
+    },
+    "polygonName": "polygonU_fixed",
+    "color": "#1f77b4",
+    "highlights": [
+      "Обласний центр",
+      "Прикордонне місто",
+      "Університетський центр",
+      "Історичний центр"
+    ],
+    "keyPlaces": [
+      {
+        "name": "Ужгородська міська рада",
+        "address": "пл. Поштова, 3",
+        "latitude": 48.62418,
+        "longitude": 22.29493,
+        "type": "government",
+        "emoji": "🏛️",
+        "description": "Адміністративний центр міста"
+      },
+      {
+        "name": "Ужгородський національний університет (головний корпус)",
+        "address": "пл. Народна, 3",
+        "latitude": 48.623,
+        "longitude": 22.295,
+        "type": "university",
+        "emoji": "🎓",
+        "description": "Провідний вищий навчальний заклад Закарпаття"
+      },
+      {
+        "name": "Факультет суспільних наук УжНУ",
+        "address": "вул. Собранецька, 148",
+        "latitude": 48.618,
+        "longitude": 22.31,
+        "type": "university",
+        "emoji": "🎓",
+        "description": "Факультет соціальних та гуманітарних наук"
+      },
+      {
+        "name": "Факультет післядипломної освіти УжНУ",
+        "address": "вул. Заньковецької, 89а",
+        "latitude": 48.62,
+        "longitude": 22.28,
+        "type": "university",
+        "emoji": "🎓",
+        "description": "Центр підвищення кваліфікації та перепідготовки кадрів"
+      },
+      {
+        "name": "Факультет інформаційних технологій УжНУ",
+        "address": "вул. Волошина, 54",
+        "latitude": 48.6195,
+        "longitude": 22.2875,
+        "type": "university",
+        "emoji": "🎓",
+        "description": "Факультет IT та комп'ютерних наук"
+      },
+      {
+        "name": "Ужгородська гімназія №1",
+        "address": "вул. Свободи, 24",
+        "latitude": 48.6205,
+        "longitude": 22.2895,
+        "type": "school",
+        "emoji": "🏫",
+        "description": "Провідна гімназія міста"
+      },
+      {
+        "name": "Ужгородська ЗОШ №3",
+        "address": "вул. Духновича, 15",
+        "latitude": 48.6185,
+        "longitude": 22.2925,
+        "type": "school",
+        "emoji": "🏫",
+        "description": "Загальноосвітня школа"
+      },
+      {
+        "name": "Ужгородська ЗОШ №5",
+        "address": "вул. Легоцького, 8",
+        "latitude": 48.6225,
+        "longitude": 22.2975,
+        "type": "school",
+        "emoji": "🏫",
+        "description": "Школа з поглибленим вивченням іноземних мов"
+      },
+      {
+        "name": "Закарпатська обласна клінічна лікарня",
+        "address": "пл. Петефі, 32",
+        "latitude": 48.6215,
+        "longitude": 22.2985,
+        "type": "hospital",
+        "emoji": "🏥",
+        "description": "Головна лікарня області"
+      },
+      {
+        "name": "Міська лікарня №1",
+        "address": "вул. Петефі, 45",
+        "latitude": 48.6195,
+        "longitude": 22.2955,
+        "type": "hospital",
+        "emoji": "🏥",
+        "description": "Міська багатопрофільна лікарня"
+      },
+      {
+        "name": "Дитяча міська лікарня",
+        "address": "вул. Корятовича, 31",
+        "latitude": 48.6175,
+        "longitude": 22.2935,
+        "type": "hospital",
+        "emoji": "🏥",
+        "description": "Спеціалізована дитяча лікарня"
+      },
+      {
+        "name": "Ужгородський замок",
+        "address": "вул. Капітульна, 33",
+        "latitude": 48.62129,
+        "longitude": 22.30663,
+        "type": "castle",
+        "emoji": "🏰",
+        "description": "Історична фортеця XIV-XVII століть"
+      },
+      {
+        "name": "Горянська ротонда",
+        "address": "м. Ужгород, мікрорайон Горяни",
+        "latitude": 48.614,
+        "longitude": 22.332,
+        "type": "monument",
+        "emoji": "🗿",
+        "description": "Унікальна кругла церква XI століття"
+      },
+      {
+        "name": "Закарпатський краєзнавчий музей",
+        "address": "вул. Капітульна, 33",
+        "latitude": 48.62129,
+        "longitude": 22.30663,
+        "type": "museum",
+        "emoji": "🏛️",
+        "description": "Головний музей краю з багатою історичною колекцією"
+      },
+      {
+        "name": "Закарпатський музей народної архітектури та побуту",
+        "address": "вул. Капітульна, 33а",
+        "latitude": 48.6215,
+        "longitude": 22.307,
+        "type": "museum",
+        "emoji": "🏛️",
+        "description": "Музей просто неба з традиційною архітектурою"
+      },
+      {
+        "name": "Кафедральний собор Воздвиження Чесного Хреста",
+        "address": "вул. Капітульна, 11",
+        "latitude": 48.621,
+        "longitude": 22.306,
+        "type": "church",
+        "emoji": "⛪",
+        "description": "Головний православний храм міста"
+      },
+      {
+        "name": "Храм Христа Спасителя",
+        "address": "пл. Кирила і Мефодія",
+        "latitude": 48.62,
+        "longitude": 22.3,
+        "type": "church",
+        "emoji": "⛪",
+        "description": "Православний храм в центрі міста"
+      },
+      {
+        "name": "Греко-католицький кафедральний собор",
+        "address": "вул. Волошина, 18",
+        "latitude": 48.6235,
+        "longitude": 22.2945,
+        "type": "church",
+        "emoji": "⛪",
+        "description": "Головний греко-католицький храм"
+      },
+      {
+        "name": "Римо-католицький костел Святого Георгія",
+        "address": "вул. Жупанатська, 8",
+        "latitude": 48.6225,
+        "longitude": 22.2965,
+        "type": "church",
+        "emoji": "⛪",
+        "description": "Історичний католицький костел"
+      },
+      {
+        "name": "Боздоський парк",
+        "address": "м. Ужгород",
+        "latitude": 48.63,
+        "longitude": 22.28,
+        "type": "park",
+        "emoji": "🌲",
+        "description": "Великий міський парк для відпочинку"
+      },
+      {
+        "name": "Парк Перемоги",
+        "address": "вул. Перемоги",
+        "latitude": 48.6155,
+        "longitude": 22.2885,
+        "type": "park",
+        "emoji": "🌲",
+        "description": "Меморіальний парк з пам'ятниками"
+      },
+      {
+        "name": "Липова алея",
+        "address": "м. Ужгород",
+        "latitude": 48.623611,
+        "longitude": 22.291944,
+        "type": "linden",
+        "emoji": "🌳",
+        "description": "Липова алея – це особливе місце невеличкого містечка Ужгород, що дивує красою як вдень, так і вночі. Для тих, хто б хотів відвідати це місце,  то в кожну пору року воно виглядає чарівно: як восени, взимку, так і весною та влітку. Особливим є те, що липова алея є найдовшою у Європі і річка Уж, яка розташована біля цієї окраїни набережної завжди дивує красою природи коли пропливають лебеді та качки, що додає ще більше мальовничості. Це саме те місце, яке сповнене щасливими людьми. Проходячи стежкою під алеєю, ти бачиш кожне усміхнене обличчя. Красиві пейзажі, затишні прогулянки та класні фото – це все про місто Ужгород, яке сповнене щастям."
+      },
+      {
+        "name": "Проспект Свободи (алея сакур)",
+        "address": "м. Ужгород",
+        "latitude": 48.6177,
+        "longitude": 22.28961,
+        "type": "sakura",
+        "emoji": "🌸",
+        "description": "Знамениті сакури, що цвітуть навесні"
+      },
+      {
+        "name": "Вулиця Марії Заньковецької (алея сакур)",
+        "address": "м. Ужгород",
+        "latitude": 48.61368,
+        "longitude": 22.28919,
+        "type": "sakura",
+        "emoji": "🌸",
+        "description": "Алея японських сакур"
+      },
+      {
+        "name": "Вулиця Митна (алея сакур)",
+        "address": "м. Ужгород",
+        "latitude": 48.62754,
+        "longitude": 22.28638,
+        "type": "sakura",
+        "emoji": "🌸",
+        "description": "Одна з найкрасивіших алей сакур"
+      },
+      {
+        "name": "Вулиця Бращайків (алея сакур)",
+        "address": "м. Ужгород",
+        "latitude": 48.62601,
+        "longitude": 22.29205,
+        "type": "sakura",
+        "emoji": "🌸",
+        "description": "Алея сакур в історичному центрі"
+      },
+      {
+        "name": "Пішохідний міст через річку Уж",
+        "address": "між пл. Театральною та пл. Петефі",
+        "latitude": 48.62139,
+        "longitude": 22.29778,
+        "type": "bridge",
+        "emoji": "🌉",
+        "description": "Символ міста, популярне місце для прогулянок"
+      },
+      {
+        "name": "Площа Театральна",
+        "address": "м. Ужгород",
+        "latitude": 48.62213,
+        "longitude": 22.29841,
+        "type": "square",
+        "emoji": "🏛️",
+        "description": "Центральна площа міста"
+      },
+      {
+        "name": "Площа Поштова",
+        "address": "м. Ужгород",
+        "latitude": 48.62418,
+        "longitude": 22.29493,
+        "type": "square",
+        "emoji": "🏛️",
+        "description": "Адміністративна площа з міською радою"
+      },
+      {
+        "name": "Центральний ринок",
+        "address": "вул. Корзо, 2",
+        "latitude": 48.6195,
+        "longitude": 22.2915,
+        "type": "market",
+        "emoji": "🏪",
+        "description": "Головний продовольчий ринок міста"
+      },
+      {
+        "name": "Ринок 'Шанхай'",
+        "address": "вул. Собранецька",
+        "latitude": 48.6165,
+        "longitude": 22.3085,
+        "type": "market",
+        "emoji": "🏪",
+        "description": "Великий торговий ринок"
+      },
+      {
+        "name": "ТРЦ 'Боздош Парк'",
+        "address": "вул. Легоцького, 58",
+        "latitude": 48.6245,
+        "longitude": 22.2895,
+        "type": "shopping",
+        "emoji": "🛍️",
+        "description": "Сучасний торгово-розважальний центр"
+      },
+      {
+        "name": "ТЦ 'Україна'",
+        "address": "пл. Петефі, 4",
+        "latitude": 48.6205,
+        "longitude": 22.2975,
+        "type": "shopping",
+        "emoji": "🛍️",
+        "description": "Торговий центр в центрі міста"
+      },
+      {
+        "name": "Ресторан 'Детелінка'",
+        "address": "вул. Волошина, 4",
+        "latitude": 48.6225,
+        "longitude": 22.2935,
+        "type": "restaurant",
+        "emoji": "🍽️",
+        "description": "Популярний ресторан української кухні"
+      },
+      {
+        "name": "Кафе 'Корзо'",
+        "address": "вул. Корзо, 15",
+        "latitude": 48.6215,
+        "longitude": 22.2925,
+        "type": "restaurant",
+        "emoji": "☕",
+        "description": "Затишне кафе в центрі міста"
+      },
+      {
+        "name": "Ресторан 'Ужгород'",
+        "address": "пл. Театральна, 10",
+        "latitude": 48.6221,
+        "longitude": 22.2984,
+        "type": "restaurant",
+        "emoji": "🍽️",
+        "description": "Ресторан з традиційною закарпатською кухнею"
+      },
+      {
+        "name": "Готель 'Ужгород'",
+        "address": "пл. Петефі, 4",
+        "latitude": 48.6205,
+        "longitude": 22.2975,
+        "type": "hotel",
+        "emoji": "🏨",
+        "description": "Центральний готель міста"
+      },
+      {
+        "name": "Готель 'Атлантіда'",
+        "address": "вул. Минайська, 24",
+        "latitude": 48.6185,
+        "longitude": 22.2855,
+        "type": "hotel",
+        "emoji": "🏨",
+        "description": "Сучасний готель з спа-центром"
+      },
+      {
+        "name": "Стадіон 'Авангард'",
+        "address": "вул. Стадіонна, 1",
+        "latitude": 48.6135,
+        "longitude": 22.2945,
+        "type": "stadium",
+        "emoji": "🏟️",
+        "description": "Головний футбольний стадіон міста"
+      },
+      {
+        "name": "Палац спорту",
+        "address": "вул. Підгірна, 46",
+        "latitude": 48.6155,
+        "longitude": 22.2925,
+        "type": "sports",
+        "emoji": "🏀",
+        "description": "Багатофункціональний спортивний комплекс"
+      },
+      {
+        "name": "Басейн 'Дельфін'",
+        "address": "вул. Гагаріна, 22",
+        "latitude": 48.6175,
+        "longitude": 22.2895,
+        "type": "sports",
+        "emoji": "🏊",
+        "description": "Міський плавальний басейн"
+      },
+      {
+        "name": "Закарпатська обласна універсальна наукова бібліотека",
+        "address": "пл. Петефі, 18",
+        "latitude": 48.6195,
+        "longitude": 22.2965,
+        "type": "library",
+        "emoji": "📚",
+        "description": "Головна бібліотека області"
+      },
+      {
+        "name": "Центральна міська бібліотека",
+        "address": "вул. Духновича, 25",
+        "latitude": 48.6185,
+        "longitude": 22.2935,
+        "type": "library",
+        "emoji": "📚",
+        "description": "Міська публічна бібліотека"
+      },
+      {
+        "name": "Закарпатський обласний український музично-драматичний театр",
+        "address": "пл. Театральна, 10",
+        "latitude": 48.6221,
+        "longitude": 22.2984,
+        "type": "theater",
+        "emoji": "🎭",
+        "description": "Головний театр області"
+      },
+      {
+        "name": "Закарпатський обласний театр ляльок",
+        "address": "вул. Жупанатська, 64",
+        "latitude": 48.6235,
+        "longitude": 22.2955,
+        "type": "theater",
+        "emoji": "🎭",
+        "description": "Театр ляльок для дітей та дорослих"
+      }
+    ],
+    "history": "Ужгород - обласний центр Закарпатської області, заснований у 903 році як угорська фортеця Унгвар. Місто має багату історію під владою різних держав: Угорського королівства, Австро-Угорщини, Чехословаччини. З 1945 року у складі України. Відомий своїми замками, університетом та алеями сакур.",
+    "geography": "Розташований на річці Уж, біля кордону зі Словаччиною. Висота над рівнем моря 115-120 м. Рельєф рівнинний з елементами передгір'я Карпат. Клімат помірно континентальний. Площа міста 36.9 км².",
+    "demographics": {
+      "population": 115512,
+      "density": 3131,
+      "urbanization": 100,
+      "ethnicComposition": {
+        "ukrainian": 78.4,
+        "hungarian": 7.8,
+        "russian": 6.2,
+        "slovak": 2.1,
+        "roma": 1.8,
+        "other": 3.7
+      }
+    },
+    "economy": {
+      "industries": [
+        "Машинобудування",
+        "Деревообробка",
+        "Харчова промисловість",
+        "Туризм",
+        "Логістика",
+        "IT",
+        "Освіта"
+      ],
+      "companies": 3200,
+      "unemployment": 4.8,
+      "majorEmployers": [
+        "ПАТ Ужгородприлад",
+        "Закарпатобленерго",
+        "УжНУ",
+        "Ужгородський коньячний завод",
+        "Міська рада"
+      ]
+    },
+    "transport": {
+      "airports": 1,
+      "railwayStations": 2,
+      "busRoutes": 25,
+      "highways": ["М06 (Київ-Чоп)", "Н09 (Мукачево-Ужгород)"],
+      "borderCrossings": 2,
+      "bikeRoutes": 8
+    },
+    "agriculture": {
+      "farmlandPercent": 5,
+      "mainCrops": ["Овочі", "Фрукти", "Виноград", "Картопля"],
+      "organicFarms": 3
+    },
+    "trade": {
+      "markets": 8,
+      "shoppingCenters": 6,
+      "supermarkets": 24,
+      "restaurants": 180,
+      "cafes": 95,
+      "hotels": 28
+    },
+    "humanitarian": {
+      "schools": { "elementary": 18, "secondary": 10, "total": 28 },
+      "hospitals": { "regional": 1, "city": 3, "specialized": 4, "total": 8 },
+      "universities": 3,
+      "libraries": 12,
+      "theaters": 2
+    },
+    "religion": {
+      "churches": { "orthodox": 15, "catholic": 8, "protestant": 2, "total": 25 },
+      "monuments": 45,
+      "museums": 8
+    },
+    "sports": {
+      "stadiums": 2,
+      "sportsCenters": 12,
+      "pools": 3,
+      "gyms": 25,
+      "sportsClubs": 45
+    }
+  },
+  {
+    "id": 2,
+    "name": "Перечинська міська громада",
+    "type": "міська",
+    "region": "Закарпатська область",
+    "area_km2": 250.5,
+    "population": 28000,
+    "settlements": 25,
+    "established": 2020,
+    "center": {
+      "latitude": 48.7328828,
+      "longitude": 22.4785884
+    },
+    "polygonName": "polygonPerechyn_fixed",
+    "color": "#2ca02c",
+    "highlights": [
+      "Прикордонне місто",
+      "Гірська місцевість",
+      "Центр сільського господарства",
+      "Туристичний потенціал"
+    ],
+    "keyPlaces": [],
+    "history": "Перечин - місто районного значення в Закарпатській області. Перша письмова згадка датована 1262 роком. Розташоване в мальовничій гірській місцевості.",
+    "geography": "Розташований у передгір'ї Карпат, на річці Лабірець. Висота над рівнем моря 175-250 м. Рельєф гірсько-передгірний.",
+    "demographics": {
+      "population": 28000,
+      "density": 112,
+      "urbanization": 45,
+      "ethnicComposition": {
+        "ukrainian": 82.5,
+        "hungarian": 8.2,
+        "russian": 5.1,
+        "other": 4.2
+      }
+    },
+    "economy": {
+      "industries": [
+        "Лісове господарство",
+        "Деревообробка",
+        "Харчова промисловість",
+        "Сільське господарство",
+        "Туризм"
+      ],
+      "companies": 450,
+      "unemployment": 6.2,
+      "majorEmployers": []
+    },
+    "transport": {
+      "railwayStations": 1,
+      "busRoutes": 8,
+      "highways": [],
+      "borderCrossings": 0
+    },
+    "agriculture": {
+      "farmlandPercent": 25,
+      "mainCrops": ["Картопля", "Зернові", "Овочі"],
+      "organicFarms": 2
+    },
+    "trade": {
+      "markets": 4,
+      "shoppingCenters": 1,
+      "supermarkets": 6,
+      "restaurants": 20,
+      "cafes": 12,
+      "hotels": 5
+    },
+    "humanitarian": {
+      "schools": { "elementary": 12, "secondary": 5, "total": 17 },
+      "hospitals": { "city": 1, "total": 1 },
+      "universities": 0,
+      "libraries": 8,
+      "theaters": 0
+    },
+    "religion": {
+      "churches": { "orthodox": 8, "catholic": 5, "protestant": 1, "total": 14 },
+      "monuments": 12,
+      "museums": 2
+    },
+    "sports": {
+      "stadiums": 1,
+      "sportsCenters": 3,
+      "pools": 1,
+      "gyms": 4,
+      "sportsClubs": 8
+    }
+  },
+  {
+    "id": 3,
+    "name": "Костринська сільська громада",
+    "type": "сільська",
+    "region": "Закарпатська область",
+    "area_km2": 180.2,
+    "population": 8500,
+    "settlements": 15,
+    "established": 2020,
+    "center": {
+      "latitude": 48.9369396,
+      "longitude": 22.606397
+    },
+    "polygonName": "polygonKostryna_fixed",
+    "color": "#ff7f0e",
+    "highlights": [
+      "Гірська місцевість",
+      "Екологічно чистий район",
+      "Традиційні ремесла",
+      "Лісове господарство"
+    ],
+    "keyPlaces": [],
+    "history": "Костріно - село в Ужгородському районі. Громада утворена в 2020 році в результаті адміністративної реформи. Відома своїми мальовничими краєвидами.",
+    "geography": "Розташована в гірській місцевості Карпат. Висота над рівнем моря 300-600 м. Багато лісів та природних ресурсів.",
+    "demographics": {
+      "population": 8500,
+      "density": 47,
+      "urbanization": 0,
+      "ethnicComposition": {
+        "ukrainian": 85.0,
+        "russian": 8.0,
+        "other": 7.0
+      }
+    },
+    "economy": {
+      "industries": [
+        "Лісове господарство",
+        "Сільське господарство",
+        "Деревообробка",
+        "Народні промисли"
+      ],
+      "companies": 120,
+      "unemployment": 7.5,
+      "majorEmployers": []
+    },
+    "transport": {
+      "railwayStations": 1,
+      "busRoutes": 5,
+      "highways": []
+    },
+    "agriculture": {
+      "farmlandPercent": 15,
+      "mainCrops": ["Картопля", "Зернові"],
+      "organicFarms": 1
+    },
+    "trade": {
+      "markets": 2,
+      "shoppingCenters": 0,
+      "supermarkets": 2,
+      "restaurants": 5,
+      "cafes": 3,
+      "hotels": 1
+    },
+    "humanitarian": {
+      "schools": { "elementary": 8, "secondary": 2, "total": 10 },
+      "hospitals": { "rural": 1, "total": 1 },
+      "universities": 0,
+      "libraries": 5,
+      "theaters": 0
+    },
+    "religion": {
+      "churches": { "orthodox": 6, "catholic": 2, "total": 8 },
+      "monuments": 5,
+      "museums": 1
+    },
+    "sports": {
+      "stadiums": 0,
+      "sportsCenters": 1,
+      "pools": 0,
+      "gyms": 2,
+      "sportsClubs": 3
+    }
+  },
+  {
+    "id": 4,
+    "name": "Сюртівська сільська громада",
+    "type": "сільська",
+    "region": "Закарпатська область",
+    "area_km2": 95.4,
+    "population": 6800,
+    "settlements": 8,
+    "established": 2020,
+    "center": {
+      "latitude": 48.4906857,
+      "longitude": 22.2324102
+    },
+    "polygonName": "polygonSyurtivka_fixed",
+    "color": "#9467bd",
+    "highlights": [
+      "Сільське господарство",
+      "Виноградарство",
+      "Традиційна культура",
+      "Екотуризм"
+    ],
+    "keyPlaces": [],
+    "history": "Сюртівська громада розташована в південній частині Ужгородського району. Відома своїми виноградниками та традиційним укладом життя.",
+    "geography": "Рівнинно-пагорбиста місцевість. Висота 110-180 м. Сприятливі умови для сільського господарства.",
+    "demographics": {
+      "population": 6800,
+      "density": 71,
+      "urbanization": 0,
+      "ethnicComposition": {
+        "ukrainian": 75.0,
+        "hungarian": 15.0,
+        "russian": 6.0,
+        "other": 4.0
+      }
+    },
+    "economy": {
+      "industries": [
+        "Сільське господарство",
+        "Виноградарство",
+        "Виноробство",
+        "Харчова промисловість"
+      ],
+      "companies": 95,
+      "unemployment": 8.2,
+      "majorEmployers": []
+    },
+    "transport": {
+      "busRoutes": 4,
+      "highways": []
+    },
+    "agriculture": {
+      "farmlandPercent": 45,
+      "mainCrops": ["Виноград", "Зернові", "Овочі"],
+      "organicFarms": 2
+    },
+    "trade": {
+      "markets": 1,
+      "shoppingCenters": 0,
+      "supermarkets": 1,
+      "restaurants": 3,
+      "cafes": 2,
+      "hotels": 0
+    },
+    "humanitarian": {
+      "schools": { "elementary": 5, "secondary": 1, "total": 6 },
+      "hospitals": { "rural": 1, "total": 1 },
+      "universities": 0,
+      "libraries": 3,
+      "theaters": 0
+    },
+    "religion": {
+      "churches": { "orthodox": 4, "catholic": 2, "total": 6 },
+      "monuments": 3,
+      "museums": 0
+    },
+    "sports": {
+      "stadiums": 0,
+      "sportsCenters": 1,
+      "pools": 0,
+      "gyms": 1,
+      "sportsClubs": 2
+    }
+  },
+  {
+    "id": 5,
+    "name": "Холмківська сільська громада",
+    "type": "сільська",
+    "region": "Закарпатська область",
+    "area_km2": 120.7,
+    "population": 9200,
+    "settlements": 10,
+    "established": 2020,
+    "center": {
+      "latitude": 48.5692026,
+      "longitude": 22.2597966
+    },
+    "polygonName": "polygonKholmky_fixed",
+    "color": "#8c564b",
+    "highlights": [
+      "Передгірна зона",
+      "Лісництво",
+      "Екотуризм",
+      "Традиційні ремесла"
+    ],
+    "keyPlaces": [],
+    "history": "Холмківська громада розташована в передгірній зоні Карпат. Багата на ліси та природні ресурси.",
+    "geography": "Передгірна місцевість з багатими лісовими масивами. Висота 150-400 м.",
+    "demographics": {
+      "population": 9200,
+      "density": 76,
+      "urbanization": 0,
+      "ethnicComposition": {
+        "ukrainian": 83.0,
+        "russian": 8.0,
+        "other": 9.0
+      }
+    },
+    "economy": {
+      "industries": [
+        "Лісове господарство",
+        "Сільське господарство",
+        "Деревообробка",
+        "Туризм"
+      ],
+      "companies": 145,
+      "unemployment": 7.8,
+      "majorEmployers": []
+    },
+    "transport": {
+      "busRoutes": 6,
+      "highways": []
+    },
+    "agriculture": {
+      "farmlandPercent": 20,
+      "mainCrops": ["Зернові", "Картопля", "Овочі"],
+      "organicFarms": 1
+    },
+    "trade": {
+      "markets": 2,
+      "shoppingCenters": 0,
+      "supermarkets": 3,
+      "restaurants": 8,
+      "cafes": 4,
+      "hotels": 2
+    },
+    "humanitarian": {
+      "schools": { "elementary": 6, "secondary": 2, "total": 8 },
+      "hospitals": { "rural": 1, "total": 1 },
+      "universities": 0,
+      "libraries": 4,
+      "theaters": 0
+    },
+    "religion": {
+      "churches": { "orthodox": 5, "catholic": 3, "total": 8 },
+      "monuments": 6,
+      "museums": 1
+    },
+    "sports": {
+      "stadiums": 0,
+      "sportsCenters": 2,
+      "pools": 0,
+      "gyms": 2,
+      "sportsClubs": 4
+    }
+  },
+  {
+    "id": 6,
+    "name": "Тур'є-Реметівська сільська громада",
+    "type": "сільська",
+    "region": "Закарпатська область",
+    "area_km2": 442.7,
+    "population": 17332,
+    "settlements": 1,
+    "established": 2020,
+    "center": {
+      "latitude": 48.71956,
+      "longitude": 22.59613
+    },
+    "polygonName": "polygonTurya_fixed",
+    "color": "#e377c2",
+    "highlights": [
+      "Гірська місцевість",
+      "Традиційні села",
+      "Екологічний туризм",
+      "Лісове господарство"
+    ],
+    "keyPlaces": [],
+    "history": "Тур'є-Реметівська громада розташована в гірській частині Ужгородського району. Центр громади - село Тур'я Поляна. Громада утворена в 2020 році.",
+    "geography": "Гірська місцевість Карпат. Висота над рівнем моря 400-800 м. Багата на ліси та природні ресурси.",
+    "demographics": {
+      "population": 16107,
+      "density": 37,
+      "urbanization": 0,
+      "ethnicComposition": {
+        "ukrainian": 82.0,
+        "russian": 10.0,
+        "other": 8.0
+      }
+    },
+    "economy": {
+      "industries": [
+        "Лісове господарство",
+        "Сільське господарство",
+        "Деревообробка",
+        "Туризм"
+      ],
+      "companies": 180,
+      "unemployment": 8.5,
+      "majorEmployers": []
+    },
+    "transport": {
+      "railwayStations": 1,
+      "busRoutes": 8,
+      "highways": []
+    },
+    "agriculture": {
+      "farmlandPercent": 18,
+      "mainCrops": ["Картопля", "Зернові", "Овочі"],
+      "organicFarms": 2
+    },
+    "trade": {
+      "markets": 3,
+      "shoppingCenters": 0,
+      "supermarkets": 4,
+      "restaurants": 10,
+      "cafes": 6,
+      "hotels": 3
+    },
+    "humanitarian": {
+      "schools": { "elementary": 10, "secondary": 3, "total": 13 },
+      "hospitals": { "rural": 2, "total": 2 },
+      "universities": 0,
+      "libraries": 6,
+      "theaters": 0
+    },
+    "religion": {
+      "churches": { "orthodox": 8, "catholic": 4, "protestant": 1, "total": 13 },
+      "monuments": 8,
+      "museums": 1
+    },
+    "sports": {
+      "stadiums": 1,
+      "sportsCenters": 2,
+      "pools": 0,
+      "gyms": 3,
+      "sportsClubs": 5
+    }
+  }
+]
