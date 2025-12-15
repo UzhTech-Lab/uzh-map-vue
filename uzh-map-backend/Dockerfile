@@ -30,8 +30,8 @@ COPY --from=builder /app/src/otg-data/data ./dist/src/otg-data/data
 # Set environment variable if needed
 ENV NODE_ENV=production
 
-# Expose port
-EXPOSE 3003
+# Expose port (Render will set PORT env var)
+EXPOSE ${PORT:-3000}
 
 # Start command
 CMD ["node", "dist/src/main.js"]
