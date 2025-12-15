@@ -6,14 +6,8 @@ import { SeedService } from '../seed/seed.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',')
-    : ['http://localhost:8081', 'http://localhost:3000'];
-
   app.enableCors({
-    origin: process.env.NODE_ENV === 'production' 
-      ? allowedOrigins 
-      : true,
+    origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
@@ -24,16 +18,20 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
 
-  // Запуск seeds для заповнення БД
+  // Запуск seeds для заповнення БД (non-blocking)
   const seed = app.get(SeedService);
-  await seed.run();
+  seed.run().catch((err) => {
+    console.error('Seed service error:', err);
+  });
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
   console.log('Swagger available at /api-docs');
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}`);
+  const host = process.env.HOST || '0.0.0.0';
+  
+  await app.listen(port, host);
+  console.log(`Application is running on: http://${host}:${port}`);
 }
 bootstrap();
